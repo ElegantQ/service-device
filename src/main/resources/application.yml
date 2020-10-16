@@ -1,0 +1,4 @@
+server:
+    port: 8250
+kubernetes:
+    master: 121.36.70.254:8080
