@@ -1,6 +1,7 @@
 package com.hqq.servicedevice.web.fronted;
 
 import com.hqq.servicedevice.model.dto.EdgeDeviceDto;
+import com.hqq.servicedevice.model.dto.EdgeDeviceModelDto;
 import com.hqq.servicedevice.service.DeviceService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("device")
-@Api(value = "k8s",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@Api(value = "k8s-device",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class DeviceController {
     @Autowired
     private DeviceService deviceService;
@@ -27,7 +28,6 @@ public class DeviceController {
     public void addEdgeDevice(@RequestBody EdgeDeviceDto deviceDto) {
         deviceService.createDevice(deviceDto);
     }
-//
-//    @PostMapping("addDeviceModel")
-//    @ApiOperation("创建设备模型")
+
+
 }

@@ -2,7 +2,7 @@ package com.hqq.servicedevice.model.modelType;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sun.org.apache.xalan.internal.xsltc.compiler.util.IntType;
+
 import lombok.Data;
 
 import java.io.Serializable;

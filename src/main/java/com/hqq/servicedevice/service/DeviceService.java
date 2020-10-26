@@ -7,4 +7,5 @@ import com.hqq.servicedevice.model.dto.EdgeDeviceDto;
  */
 public interface DeviceService {
     public void createDevice(EdgeDeviceDto devicedto);
+
 }
