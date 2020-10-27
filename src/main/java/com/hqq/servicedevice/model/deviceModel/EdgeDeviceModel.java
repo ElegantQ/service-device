@@ -10,5 +10,6 @@ import lombok.Data;
 @Data
 public class EdgeDeviceModel extends CustomResource implements Namespaced{
     private static final long serialVersionUID = -5706719349058198312L;
+
     private DeviceModelSpec spec;
 }

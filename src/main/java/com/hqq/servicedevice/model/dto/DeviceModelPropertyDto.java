@@ -15,15 +15,10 @@ public class DeviceModelPropertyDto implements Serializable {
 
     private String description;
 
-    private String accessModeForInt;
+    private String type;
 
-    private int valueForInt;
+    private String value;
 
-    private String accessModeForDouble;
+    private String accessMode;
 
-    private double valueForDouble;
-
-    private String accessModeForString;
-
-    private String valueForString;
 }

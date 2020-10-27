@@ -1,6 +1,5 @@
 package com.hqq.servicedevice.model.dto;
 
-import com.hqq.servicedevice.model.device.EdgeDeviceTwinDto;
 import lombok.Data;
 
 import java.io.Serializable;

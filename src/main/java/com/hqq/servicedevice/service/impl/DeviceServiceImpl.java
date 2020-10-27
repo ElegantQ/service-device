@@ -1,15 +1,16 @@
 package com.hqq.servicedevice.service.impl;
 
+
+
 import com.hqq.servicedevice.model.device.*;
-import com.hqq.servicedevice.model.deviceModel.DeviceModelList;
-import com.hqq.servicedevice.model.deviceModel.DoneableDeviceModel;
-import com.hqq.servicedevice.model.deviceModel.EdgeDeviceModel;
 import com.hqq.servicedevice.model.dto.EdgeDeviceDto;
+import com.hqq.servicedevice.model.dto.EdgeDeviceTwinDto;
 import com.hqq.servicedevice.service.DeviceService;
 import io.fabric8.kubernetes.api.model.NodeSelector;
 import io.fabric8.kubernetes.api.model.NodeSelectorRequirement;
 import io.fabric8.kubernetes.api.model.NodeSelectorTerm;
 import io.fabric8.kubernetes.api.model.ObjectMeta;
+import io.fabric8.kubernetes.client.CustomResourceList;
 import io.fabric8.kubernetes.client.dsl.NonNamespaceOperation;
 import io.fabric8.kubernetes.client.dsl.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,5 +83,38 @@ public class DeviceServiceImpl implements DeviceService {
             e.printStackTrace();
             System.out.println("设备创建失败");
         }
+    }
+
+    @Override
+    public List<EdgeDeviceDto> getAllDevice() {
+        CustomResourceList<EdgeDevice> deviceList = deviceClient.list();
+        List<EdgeDevice> devices=deviceList.getItems();
+        List<EdgeDeviceDto> deviceDtos=new ArrayList<>();
+        for(EdgeDevice edgeDevice:devices){
+            EdgeDeviceDto deviceDto=new EdgeDeviceDto();
+            List<DeviceTwin> deviceTwins=edgeDevice.getStatus().getTwins();
+            List<EdgeDeviceTwinDto> deviceTwinDtos=new ArrayList<>();
+            for(DeviceTwin twin:deviceTwins){
+                EdgeDeviceTwinDto deviceTwinDto=new EdgeDeviceTwinDto();
+                deviceTwinDto.setPropertyName(twin.getPropertyName());
+                deviceTwinDto.setRequireType(twin.getDesired().getMetadata().getType());
+                deviceTwinDto.setRequireValue(twin.getDesired().getValue());
+                if(twin.getReported()!=null){
+                    deviceTwinDto.setReportedTime(twin.getReported().getMetadata().getTimestamp());
+                    deviceTwinDto.setReportedType(twin.getReported().getMetadata().getType());
+                    deviceTwinDto.setReportedValue(twin.getReported().getValue());
+                }
+                deviceTwinDtos.add(deviceTwinDto);
+            }
+            deviceDto.setDeviceTwinDtoList(deviceTwinDtos);
+            deviceDto.setDeviceModelRefName(edgeDevice.getSpec().getDeviceModelRef().getName());
+            deviceDto.setNodeName(edgeDevice.getSpec().getNodeSelector().getNodeSelectorTerms().get(0)
+                    .getMatchExpressions().get(0).getValues().get(0));
+            deviceDto.setDeviceName(edgeDevice.getMetadata().getName());
+            deviceDto.setDescription(edgeDevice.getMetadata().getLabels().get("description"));
+            deviceDto.setDescription(edgeDevice.getMetadata().getLabels().get("model"));
+            deviceDtos.add(deviceDto);
+        }
+        return deviceDtos;
     }
 }

@@ -11,5 +11,6 @@ import java.util.List;
 @Data
 public class EdgeDeviceModelDto implements Serializable {
     private static final long serialVersionUID = 3389016370326455681L;
+    private String name;
     private List<DeviceModelPropertyDto> propertyDtos;
 }
