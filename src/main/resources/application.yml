@@ -2,3 +2,8 @@ server:
     port: 8250
 kubernetes:
     master: 121.36.70.254:8080
+rocketmq:
+    consumerGroup: device-data-consumer
+    producerGroup: device-data-producer
+    namesrvAddr: 182.92.222.53:9876
+

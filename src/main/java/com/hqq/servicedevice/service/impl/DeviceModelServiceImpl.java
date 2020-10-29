@@ -46,19 +46,19 @@ public class DeviceModelServiceImpl implements DeviceModelService {
                 modelProperty.setName(propertyDto.getName());
                 ModelType type=new ModelType();
                 String type1=propertyDto.getType();
-                if(type1.equals("string")){
+                if(type1!=null&&type1.equals("string")){
                     StringType stringType=new StringType();
                     stringType.setAccessMode(propertyDto.getAccessMode());
                     stringType.setDefaultValue(propertyDto.getValue());
                     type.setStringType(stringType);
                 }
-                else if(type1.equals("double")){
+                else if(type1!=null&&type1.equals("double")){
                     DoubleType doubleType=new DoubleType();
                     doubleType.setAccessMode(propertyDto.getAccessMode());
                     doubleType.setDefaultValue(Double.valueOf(propertyDto.getValue()));
                     type.setDoubleType(doubleType);
                 }
-                else if(type1.equals("int")){
+                else if(type1!=null&&type1.equals("int")){
                     IntType intType=new IntType();
                     intType.setAccessMode(propertyDto.getAccessMode());
                     intType.setDefaultValue(Integer.valueOf(propertyDto.getValue()));
