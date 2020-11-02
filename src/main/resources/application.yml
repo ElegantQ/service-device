@@ -3,7 +3,12 @@ server:
 kubernetes:
     master: 121.36.70.254:8080
 rocketmq:
-    consumerGroup: device-data-consumer
-    producerGroup: device-data-producer
-    namesrvAddr: 182.92.222.53:9876
+    consumer:
+        isOnOff: on
+        groupName: device-data-consumer
+        namesrvAddr: 123.56.46.27:9876
+        topics: device-data,*
+        consumeThreadMin: 5
+        consumeThreadMax: 32
+        consumeMessageBatchMaxSize: 1
 
