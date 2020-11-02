@@ -1,5 +1,7 @@
 package com.hqq.servicedevice.web.fronted;
 
+import com.alibaba.fastjson.JSONObject;
+import com.hqq.servicedevice.model.dto.DeviceDto;
 import com.hqq.servicedevice.model.dto.EdgeDeviceDto;
 import com.hqq.servicedevice.service.DeviceService;
 import io.swagger.annotations.Api;
@@ -30,6 +32,12 @@ public class DeviceController {
     @ApiOperation( "获取全部设备")
     public List<EdgeDeviceDto> getAllDevice() {
         return deviceService.getAllDevice();
+    }
+
+    @GetMapping("getDeviceData")
+    @ApiOperation("获取设备实时数据")
+    public DeviceDto getDeviceDataByDeviceName(@RequestParam("deviceName") String deviceName){
+        return deviceService.getDeviceDataByDeviceName(deviceName);
     }
 
 

@@ -2,10 +2,14 @@ package com.hqq.servicedevice.service.impl;
 
 
 
+import com.alibaba.fastjson.JSONObject;
+import com.hqq.servicedevice.model.dto.DeviceDto;
+import com.hqq.servicedevice.util.RedisUtil;
 import com.hqq.servicedevice.model.device.*;
 import com.hqq.servicedevice.model.dto.EdgeDeviceDto;
 import com.hqq.servicedevice.model.dto.EdgeDeviceTwinDto;
 import com.hqq.servicedevice.service.DeviceService;
+import com.hqq.servicedevice.util.SerializeUtil;
 import io.fabric8.kubernetes.api.model.NodeSelector;
 import io.fabric8.kubernetes.api.model.NodeSelectorRequirement;
 import io.fabric8.kubernetes.api.model.NodeSelectorTerm;
@@ -26,8 +30,15 @@ import java.util.Map;
  */
 @Service
 public class DeviceServiceImpl implements DeviceService {
+
+    @Autowired
+    private RedisUtil redisUtil;
+
     @Autowired
     private NonNamespaceOperation<EdgeDevice, DeviceList, DoneableDevice, Resource<EdgeDevice, DoneableDevice>> deviceClient;
+
+    @Autowired
+    private SerializeUtil serializeUtil;
     @Override
     public void createDevice(EdgeDeviceDto deviceDto) {
         try {
@@ -116,5 +127,10 @@ public class DeviceServiceImpl implements DeviceService {
             deviceDtos.add(deviceDto);
         }
         return deviceDtos;
+    }
+
+    @Override
+    public DeviceDto getDeviceDataByDeviceName(String deviceName) {
+        return  (DeviceDto) redisUtil.get(deviceName);
     }
 }

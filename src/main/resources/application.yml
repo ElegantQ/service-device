@@ -12,3 +12,15 @@ rocketmq:
         consumeThreadMax: 32
         consumeMessageBatchMaxSize: 1
 
+spring:
+    redis:
+        database: 0
+        host: 123.56.46.27
+        port: 6379
+        pool:
+            max-active: 4
+            max-wait: -1
+            max-idel: 4
+            min-idel: 0
+        timeout: 1000
+

@@ -1,10 +1,13 @@
 package com.hqq.servicedevice.mq.consumer;
 
-import com.hqq.servicedevice.config.JacksonUtil;
+import com.hqq.servicedevice.model.dto.DeviceDto;
+import com.hqq.servicedevice.util.JacksonUtil;
 import com.hqq.servicedevice.model.dto.MsgDto;
 import com.hqq.servicedevice.model.mq.MqMessage;
 import com.hqq.servicedevice.model.mq.MqSendMsgDto;
+import com.hqq.servicedevice.util.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -15,26 +18,23 @@ import java.io.IOException;
 @Slf4j
 @Service
 public class TopicConsumer {
+    @Autowired
+    private RedisUtil redisUtil;
+
     public void handlerSendMqMsg(String body, String topicName, String tags, String keys){
         log.info("handlerSendMqMsg:body={},topicName={},tags={},keys={}",body,topicName,tags,keys);
         MqMessage.checkMessage(body, keys, topicName);
-        MqSendMsgDto mqSendMsgDto = new MqSendMsgDto();
+        DeviceDto deviceDto=new DeviceDto();
         try {
-            mqSendMsgDto = JacksonUtil.parseJson(body, MqSendMsgDto.class);
+            deviceDto = JacksonUtil.parseJson(body, DeviceDto.class);
         } catch (IOException e) {
             log.error("发送短信MQ出现异常={}", e.getMessage(), e);
             throw new IllegalArgumentException("JSON转换异常", e);
         }
-        if(mqSendMsgDto==null){
+        if(deviceDto==null){
             log.error("消息体为空");
         }
-        String userId = String.valueOf(mqSendMsgDto.getUserId());
-        MsgDto<MqSendMsgDto> msgDto = new MsgDto<>();
-        msgDto.setTopic(topicName);
-        msgDto.setTag(tags);
-        msgDto.setContent(mqSendMsgDto);
-        log.info("webSocketMsgDto = {}",msgDto);
-        log.info("userId = {}",userId);
+        redisUtil.set(deviceDto.getDeviceName(),deviceDto);
         //TODO:将设备数据传给规则，进行处理
     }
 }

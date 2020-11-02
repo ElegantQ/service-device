@@ -1,5 +1,5 @@
 
-package com.hqq.servicedevice.config;
+package com.hqq.servicedevice.util;
 
 import org.codehaus.jackson.map.DeserializationConfig.Feature;
 import org.codehaus.jackson.map.ObjectMapper;

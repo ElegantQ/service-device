@@ -154,7 +154,6 @@ public class MqMessage implements Serializable {
 	public static void checkMessage(String topic, String key, String body) {
 
 		Preconditions.checkArgument(!StringUtils.isEmpty(topic), "发送消息失败, 消息主题不能为空");
-		Preconditions.checkArgument(!StringUtils.isEmpty(key), "发送消息失败, 消息关键字不能为空");
 		Preconditions.checkArgument(!StringUtils.isEmpty(body), "发送消息失败, 消息体不能为空");
 	}
 
