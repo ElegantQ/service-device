@@ -22,7 +22,7 @@ public class WebSocketServiceImpl implements WebSocketService {
     @Override
     public void pushDataToWebClient(DeviceDto deviceDto) {
         try {
-            messagingTemplate.convertAndSend("/queue/chat",deviceDto);
+            messagingTemplate.convertAndSend("/queue/device",deviceDto);
         }catch (Exception e){
             log.info("{}",e);
         }
