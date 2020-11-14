@@ -1,11 +1,12 @@
 package com.hqq.servicedevice.config;
 
-import com.hqq.servicedevice.model.device.DeviceList;
-import com.hqq.servicedevice.model.device.DoneableDevice;
-import com.hqq.servicedevice.model.device.EdgeDevice;
-import com.hqq.servicedevice.model.deviceModel.DeviceModelList;
-import com.hqq.servicedevice.model.deviceModel.DoneableDeviceModel;
-import com.hqq.servicedevice.model.deviceModel.EdgeDeviceModel;
+
+import com.hqq.servicedevice.model.domain.device.DeviceList;
+import com.hqq.servicedevice.model.domain.device.DoneableDevice;
+import com.hqq.servicedevice.model.domain.device.EdgeDevice;
+import com.hqq.servicedevice.model.domain.deviceModel.DeviceModelList;
+import com.hqq.servicedevice.model.domain.deviceModel.DoneableDeviceModel;
+import com.hqq.servicedevice.model.domain.deviceModel.EdgeDeviceModel;
 import io.fabric8.kubernetes.api.model.ObjectMeta;
 import io.fabric8.kubernetes.api.model.apiextensions.CustomResourceDefinition;
 import io.fabric8.kubernetes.api.model.apiextensions.CustomResourceDefinitionList;

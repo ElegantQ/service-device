@@ -2,10 +2,10 @@ package com.hqq.servicedevice.service.impl;
 
 
 
-import com.alibaba.fastjson.JSONObject;
+import com.hqq.servicedevice.model.domain.device.*;
 import com.hqq.servicedevice.model.dto.DeviceDto;
 import com.hqq.servicedevice.util.RedisUtil;
-import com.hqq.servicedevice.model.device.*;
+
 import com.hqq.servicedevice.model.dto.EdgeDeviceDto;
 import com.hqq.servicedevice.model.dto.EdgeDeviceTwinDto;
 import com.hqq.servicedevice.service.DeviceService;

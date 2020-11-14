@@ -1,4 +1,4 @@
-package com.hqq.servicedevice.model.device;
+package com.hqq.servicedevice.model.domain.device;
 
 import lombok.Data;
 

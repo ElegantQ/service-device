@@ -1,10 +1,9 @@
 package com.hqq.servicedevice.mq.consumer;
 
 import com.hqq.servicedevice.model.dto.DeviceDto;
+import com.hqq.servicedevice.service.WebSocketService;
 import com.hqq.servicedevice.util.JacksonUtil;
-import com.hqq.servicedevice.model.dto.MsgDto;
 import com.hqq.servicedevice.model.mq.MqMessage;
-import com.hqq.servicedevice.model.mq.MqSendMsgDto;
 import com.hqq.servicedevice.util.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +19,8 @@ import java.io.IOException;
 public class TopicConsumer {
     @Autowired
     private RedisUtil redisUtil;
+    @Autowired
+    private WebSocketService websocketService;
 
     public void handlerSendMqMsg(String body, String topicName, String tags, String keys){
         log.info("handlerSendMqMsg:body={},topicName={},tags={},keys={}",body,topicName,tags,keys);
@@ -35,6 +36,7 @@ public class TopicConsumer {
             log.error("消息体为空");
         }
         redisUtil.set(deviceDto.getDeviceName(),deviceDto);
+        websocketService.pushDataToWebClient(deviceDto);
         //TODO:将设备数据传给规则，进行处理
     }
 }

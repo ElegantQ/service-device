@@ -1,6 +1,6 @@
-package com.hqq.servicedevice.model.deviceModel;
+package com.hqq.servicedevice.model.domain.deviceModel;
 
-import com.hqq.servicedevice.model.modelType.ModelType;
+import com.hqq.servicedevice.model.domain.modelType.ModelType;
 import lombok.Data;
 
 import java.io.Serializable;

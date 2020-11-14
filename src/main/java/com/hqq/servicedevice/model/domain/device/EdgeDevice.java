@@ -1,10 +1,8 @@
-package com.hqq.servicedevice.model.device;
+package com.hqq.servicedevice.model.domain.device;
 
 import io.fabric8.kubernetes.api.model.Namespaced;
 import io.fabric8.kubernetes.client.CustomResource;
 import lombok.Data;
-
-import java.io.Serializable;
 
 /**
  * Created by huqiaoqian on 2020/10/14

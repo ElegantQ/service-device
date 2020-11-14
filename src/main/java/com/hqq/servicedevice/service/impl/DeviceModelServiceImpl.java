@@ -1,13 +1,13 @@
 package com.hqq.servicedevice.service.impl;
 
 
-import com.hqq.servicedevice.model.deviceModel.*;
+import com.hqq.servicedevice.model.domain.deviceModel.*;
+import com.hqq.servicedevice.model.domain.modelType.DoubleType;
+import com.hqq.servicedevice.model.domain.modelType.IntType;
+import com.hqq.servicedevice.model.domain.modelType.ModelType;
+import com.hqq.servicedevice.model.domain.modelType.StringType;
 import com.hqq.servicedevice.model.dto.DeviceModelPropertyDto;
 import com.hqq.servicedevice.model.dto.EdgeDeviceModelDto;
-import com.hqq.servicedevice.model.modelType.DoubleType;
-import com.hqq.servicedevice.model.modelType.IntType;
-import com.hqq.servicedevice.model.modelType.ModelType;
-import com.hqq.servicedevice.model.modelType.StringType;
 import com.hqq.servicedevice.service.DeviceModelService;
 import io.fabric8.kubernetes.api.model.ObjectMeta;
 import io.fabric8.kubernetes.client.CustomResourceList;
@@ -15,7 +15,6 @@ import io.fabric8.kubernetes.client.dsl.NonNamespaceOperation;
 import io.fabric8.kubernetes.client.dsl.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 

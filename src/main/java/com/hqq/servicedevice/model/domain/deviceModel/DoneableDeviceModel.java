@@ -1,4 +1,4 @@
-package com.hqq.servicedevice.model.deviceModel;
+package com.hqq.servicedevice.model.domain.deviceModel;
 
 import io.fabric8.kubernetes.api.builder.Function;
 import io.fabric8.kubernetes.client.CustomResourceDoneable;

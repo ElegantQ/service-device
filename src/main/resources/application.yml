@@ -1,7 +1,7 @@
 server:
     port: 8250
 kubernetes:
-    master: 121.36.70.254:8080
+    master: 182.92.222.53:8080
 rocketmq:
     consumer:
         isOnOff: on

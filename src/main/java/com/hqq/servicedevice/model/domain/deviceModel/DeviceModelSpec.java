@@ -1,4 +1,4 @@
-package com.hqq.servicedevice.model.deviceModel;
+package com.hqq.servicedevice.model.domain.deviceModel;
 
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;

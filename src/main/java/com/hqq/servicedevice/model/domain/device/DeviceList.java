@@ -1,4 +1,4 @@
-package com.hqq.servicedevice.model.device;
+package com.hqq.servicedevice.model.domain.device;
 
 import io.fabric8.kubernetes.client.CustomResourceList;
 

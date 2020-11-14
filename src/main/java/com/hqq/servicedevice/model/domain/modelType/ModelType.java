@@ -1,4 +1,4 @@
-package com.hqq.servicedevice.model.modelType;
+package com.hqq.servicedevice.model.domain.modelType;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
